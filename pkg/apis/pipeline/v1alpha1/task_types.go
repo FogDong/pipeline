@@ -72,6 +72,8 @@ type TaskSpec struct {
 
 	// Results are values that this Task can output
 	Results []TaskResult `json:"results,omitempty"`
+
+	HostNetwork bool `json:"hostNetwork,omitempty" protobuf:"varint,11,opt,name=hostNetwork"`
 }
 
 // TaskResult used to describe the results of a task
