@@ -137,7 +137,7 @@ func MakePod(images pipeline.Images, taskRun *v1alpha1.TaskRun, taskSpec v1alpha
 		requestedVolumeMounts := map[string]bool{}
 		for i, vm := range s.VolumeMounts {
 			requestedVolumeMounts[filepath.Clean(vm.MountPath)] = true
-			if vm.MountPath == "/share/output" {
+			if vm.MountPath == "/share" {
 				s.VolumeMounts[i].SubPath = taskRun.Labels["tekton.dev/pipelineRun"]
 			}
 		}
