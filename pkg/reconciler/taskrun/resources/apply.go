@@ -116,6 +116,10 @@ func ApplyReplacements(spec *v1alpha1.TaskSpec, stringReplacements map[string]st
 		spec.Volumes[i].Name = substitution.ApplyReplacements(v.Name, stringReplacements)
 		if v.VolumeSource.ConfigMap != nil {
 			spec.Volumes[i].ConfigMap.Name = substitution.ApplyReplacements(v.ConfigMap.Name, stringReplacements)
+			for index, item := range v.ConfigMap.Items {
+				spec.Volumes[i].ConfigMap.Items[index].Key = substitution.ApplyReplacements(item.Key, stringReplacements)
+				spec.Volumes[i].ConfigMap.Items[index].Path = substitution.ApplyReplacements(item.Path, stringReplacements)
+			}
 		}
 		if v.VolumeSource.Secret != nil {
 			spec.Volumes[i].Secret.SecretName = substitution.ApplyReplacements(v.Secret.SecretName, stringReplacements)
